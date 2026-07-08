@@ -3,15 +3,16 @@ package com.crd.rebalance;
 import com.crd.rebalancer.RebalancerEngine;
 import com.crd.rebalancer.Security;
 import com.crd.util.ConfigReader;
+import com.crd.reporting.ExtentReportManager;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
+
 
 import java.util.List;
 import java.util.Map;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertThrows;
-
+@Listeners(ExtentReportManager.class)
 public class RebalancerEngineTest {
     @Test(priority = 1, description = "Verify Happy Path Rebalancing via Config Properties File")
 
