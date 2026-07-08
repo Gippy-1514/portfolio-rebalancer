@@ -7,6 +7,8 @@ import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
+import java.io.File;
+
 public class ExtentReportManager implements ITestListener {
 
     // Simple tracking objects
@@ -15,11 +17,16 @@ public class ExtentReportManager implements ITestListener {
 
     @Override
     public void onStart(ITestContext context) {
-        // 1. Point to where the file will save
-        String path = System.getProperty("user.dir") + "/target/extent-reports/Dashboard.html";
-        ExtentSparkReporter spark = new ExtentSparkReporter(path);
 
-        // 2. Initialize the main reporting manager
+        String folderPath = System.getProperty("user.dir") + "/target/extent-reports/";
+        String filePath = folderPath + "Dashboard.html";
+
+        File dir = new File(folderPath);
+        if (!dir.exists()) {
+            dir.mkdirs();
+        }
+
+        ExtentSparkReporter spark = new ExtentSparkReporter(filePath);
         extent = new ExtentReports();
         extent.attachReporter(spark);
     }
