@@ -11,7 +11,6 @@ import java.io.File;
 
 public class ExtentReportManager implements ITestListener {
 
-    // Simple tracking objects
     private static ExtentReports extent;
     private static ExtentTest currentTest;
 
@@ -33,7 +32,6 @@ public class ExtentReportManager implements ITestListener {
 
     @Override
     public void onTestStart(ITestResult result) {
-        // 3. Create a clean row in the report whenever a test begins
         String description = result.getMethod().getDescription();
         currentTest = extent.createTest(result.getMethod().getMethodName(), description);
     }
@@ -45,13 +43,13 @@ public class ExtentReportManager implements ITestListener {
 
     @Override
     public void onTestFailure(ITestResult result) {
-        currentTest.fail(result.getThrowable()); // Automatically print error logs
+        currentTest.fail(result.getThrowable());
     }
 
     @Override
     public void onFinish(ITestContext context) {
         if (extent != null) {
-            extent.flush(); // 4. Close the HTML stream and save the file to disk
+            extent.flush();
         }
     }
 }

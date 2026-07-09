@@ -7,8 +7,6 @@ import com.crd.reporting.ExtentReportManager;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-
-
 import java.util.List;
 import java.util.Map;
 
@@ -18,38 +16,32 @@ public class RebalancerEngineTest {
 
     public void testHappyPathAccountABC() {
 
-        System.out.println("Positive TEST: Happy Path Rebalancing (Account ABC): Result - ");
+        System.out.println("Positive Test: Happy Path Rebalancing (Account ABC) \n");
 
         double totalAssets = ConfigReader.getTotalAssets();
 
         List<Security> securities = ConfigReader.getSecuritiesFromConfig();
         Map<String, Double> expectedTrades = ConfigReader.getExpectedTrades();
 
-        // 2. Execute calculation engine
         Map<String, Double> actualTrades = RebalancerEngine.calculateTrades(totalAssets, securities);
-
-        System.out.println(" Processing and verification");
 
         for (Map.Entry<String, Double> entry : actualTrades.entrySet()) {
             String ticker = entry.getKey();
             double actualShares = entry.getValue();
             double expectedShares = expectedTrades.getOrDefault(ticker, 0.0);
 
-            // Print beautifully dynamically
             String action = (actualShares < 0) ? "BUY" : (actualShares > 0) ? "SELL" : "HOLD";
             System.out.printf("   Asset: %-5s | Shares Generated: %-9.4f (%s)\n", ticker, actualShares, action);
 
-            // TestNG loop assertion checking (actual, expected, tolerance)
             Assert.assertEquals(actualShares, expectedShares, 0.0001, "Mismatch found on ticker: " + ticker);
             System.out.println(" ");
         }
-
     }
 
     @Test(priority = 2, description = "Should throw exception when target allocation total doesn't equal 100%")
 
     public void testInvalidTargetAllocationSum() {
-        System.out.println("NEGATIVE Test: Result - ");
+        System.out.println("Negative Test: Invalid Target Allocation Sum Validation");
 
         double totalAssets = ConfigReader.getTotalAssets();
 
@@ -66,7 +58,7 @@ public class RebalancerEngineTest {
 
     public void testInvalidUnitPrice() {
 
-        System.out.println("Edge TEST: Invalid Unit Price Validation- Result - ");
+        System.out.println("Edge Test: Invalid Unit Price Validation");
 
         double totalAssets = ConfigReader.getTotalAssets();
         List<Security> badPriceSecurities = ConfigReader.getSecuritiesWithBadPrice();

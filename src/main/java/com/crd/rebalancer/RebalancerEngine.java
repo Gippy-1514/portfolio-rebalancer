@@ -16,10 +16,10 @@ public class RebalancerEngine {
         Map<String, Double> results = new HashMap<>();
 
         for (Security s : securities) {
-            // we here calculate the financial cash deviation for this asset
+            // Calculate financial cash deviation for asset
             double valueDelta = FinancialCalculator.calculateValueDelta(totalAssets, s.getVariance());
 
-            // we then convert that cash deviation into a share count
+            // Convert cash deviation into a share count
             double finalShares = FinancialCalculator.calculateRoundedShares(valueDelta, s.getUnitPrice());
 
             results.put(s.getTicker(), finalShares);

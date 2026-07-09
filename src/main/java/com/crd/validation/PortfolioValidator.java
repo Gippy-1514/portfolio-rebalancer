@@ -12,7 +12,7 @@ public class PortfolioValidator {
             throw new IllegalArgumentException("Total assets cannot be negative");
         }
 
-        // 1. DYNAMIC CHECK: Allocation sum limits are now fetched from config
+        // Allocation sum limits are fetched from config
         double allowedAllocationSum = ConfigReader.getRequiredTargetAllocationTotal();
         double totalTargetPct = securities.stream().mapToDouble(Security::getTargetPct).sum();
 
@@ -20,7 +20,7 @@ public class PortfolioValidator {
             throw new IllegalArgumentException("Total target allocation must equal " + allowedAllocationSum + "%");
         }
 
-        // 2. DYNAMIC CHECK: Price boundaries are now fetched from config
+        // Price boundaries are fetched from config
         double minimumPriceLimit = ConfigReader.getMinimumAllowableUnitPrice();
         for (Security s : securities) {
             if (s.getUnitPrice() <= minimumPriceLimit) {
