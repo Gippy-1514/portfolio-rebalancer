@@ -1,3 +1,5 @@
+ℹ️ **Review the complete project design, manual test cases, and execution screenshots in the [Problem Analysis & Manual Test Matrix](./SS_ProblemAnalysis.pdf) document.**
+
 ## Portfolio Rebalancer Framework:
 This framework is designed to help investors manage and rebalance their investment portfolios effectively.
 
