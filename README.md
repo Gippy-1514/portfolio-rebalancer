@@ -10,30 +10,35 @@ This framework is designed to help investors manage and rebalance their investme
 4. Alternatively, run via CLI: Execute mvn clean test in your terminal. 
 5. View Results: Open target/extent-reports/Dashboard.html in your web browser.
 
-## Tech Stack:
-   Language Engine: Java 23
-   Testing Framework: TestNG (v7.10.2)
-   Build Architecture: Apache Maven (v3.9.x) & Maven Surefire Plugin (v3.2.5)
-   Reporting Engine: Extent Reports (v5.1.2)
-   CI/CD Platform: GitHub Actions Cloud Runners
+## Tech Stack
 
-## Project Structure:
+* **Language Engine:** Java 23
+* **Testing Framework:** TestNG (v7.10.2)
+* **Build Architecture:** Apache Maven (v3.9.x) & Maven Surefire Plugin (v3.2.5)
+* **Reporting Engine:** Extent Reports (v5.1.2)
+* **CI/CD Platform:** GitHub Actions Cloud Runners
 
+---
+
+## Project Structure
+
+```text
 📦 crd-technical-assessment
-├─ .github/workflows/maven.yml # Cloud CI/CD pipeline script
+├─ .github/workflows/maven.yml  # Cloud CI/CD pipeline script
 ├─ src/main/java/com/crd
 │  ├─ analytics                # Portfolio drift algorithms
-│  ├─ rebalancer               # Core rebalancing engine logic
+│  ├─ rebalancer                # Core rebalancing engine logic
 │  ├─ util                     # Config reader utilities
-│  └─ validation               # Data threshold safety guards
+│  └─ validation                # Data threshold safety guards
 ├─ src/main/resources
-│  └─ config.properties        # Portfolio datasets & inputs
+│  └─ config.properties         # Portfolio datasets & inputs
 ├─ src/test/java/com/crd
 │  ├─ rebalance                # TestNG test cases
 │  └─ reporting                # Extent HTML report setup
-├─ Jenkinsfile                 # Alternative pipeline script
-├─ pom.xml                     # Maven project dependencies
-└─ README.md                   # Project documentation
+├─ Jenkinsfile                  # Alternative pipeline script
+├─ pom.xml                      # Maven project dependencies
+└─ README.md                    # Project documentation
+```
 
 ## Automated Test Matrix:
 
